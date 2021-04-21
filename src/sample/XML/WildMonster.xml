@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--WildMonster:宠物编号
+    WildMonsterName:宠物名称
+    WildMonsterGradeRange:宠物等级范围
+    WildMonsterMapID:宠物出现地图ID
+    WildMonsterMapName:宠物出现地图名称
+-->
+<WildMonsterS>
+    <WildMonster id="1">
+        <id>1</id>
+        <WildMonsterName>喵喵</WildMonsterName>
+        <WildMonsterGradeRange>3~5</WildMonsterGradeRange>
+        <WildMonsterMapID>1</WildMonsterMapID>
+        <WildMonsterMapName>宠物园</WildMonsterMapName>
+        <HideWildMonster>ture</HideWildMonster>
+    </WildMonster>
+    <WildMonster id="2">
+        <id>2</id>
+        <WildMonsterName>水蓝蓝</WildMonsterName>
+        <WildMonsterGradeRange>10~12</WildMonsterGradeRange>
+        <WildMonsterMapID>123</WildMonsterMapID>
+        <WildMonsterMapName>亚特兰蒂斯</WildMonsterMapName>
+        <HideWildMonster>ture</HideWildMonster>
+    </WildMonster>
+</WildMonsterS>

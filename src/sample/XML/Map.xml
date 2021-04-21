@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+     Map:地图编号
+     MapName:地图编号
+     WildMonsterID:野怪编号
+     WildMonsterName:野怪名称
+     HideWildMonsterID:隐藏野怪编号
+     HideWildMonsterName:隐藏野怪名称
+     MapEntrance:地图是否可入
+-->
+<Maps>
+    <Map id="1">
+        <MapName></MapName>
+        <WildMonsterID></WildMonsterID>
+        <WildMonsterName></WildMonsterName>
+        <WildMonsterID>null</WildMonsterID>
+        <WildMonsterName>null</WildMonsterName>
+        <HideWildMonsterID></HideWildMonsterID>
+        <HideWildMonsterName></HideWildMonsterName>
+        <MapEntrance></MapEntrance>
+    </Map>
+</Maps>
