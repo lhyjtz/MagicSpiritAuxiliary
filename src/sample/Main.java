@@ -18,9 +18,10 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws FileNotFoundException {
-        primaryStage.setResizable(false);
+    public void start(Stage primaryStage) {
+        primaryStage.setTitle("梦灵辅助-开发状态-开发版本V1.0");
         primaryStage.sizeToScene();
+        primaryStage.setResizable(false);
         Region headerLeftSpring = new Region();
         Scene scene = SceneBuilder.create()
                 .width(1050)
@@ -103,7 +104,6 @@ public class Main extends Application {
                 )
                 .build();
         HBox.setHgrow(headerLeftSpring, Priority.ALWAYS);
-        primaryStage.setTitle("梦灵辅助-开发状态-开发版本V1.0");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
