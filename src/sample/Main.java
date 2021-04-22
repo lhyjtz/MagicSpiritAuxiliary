@@ -7,8 +7,11 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.web.WebViewBuilder;
 import javafx.stage.Stage;
+import sample.Tool.Eneity.WildMonsterXMLReadEntity;
+import sample.Tool.XMLRead.WildMonsterXMLRead;
 
-import java.io.FileNotFoundException;
+import java.util.List;
+
 
 public class Main extends Application {
     private String mInitUrl = "https://17roco.qq.com/default.html";
@@ -18,10 +21,13 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("梦灵辅助-开发状态-开发版本V1.0");
         primaryStage.sizeToScene();
         primaryStage.setResizable(false);
+        WildMonsterXMLRead WildMonsterXMLRead = new WildMonsterXMLRead();
+        List<WildMonsterXMLReadEntity> list = WildMonsterXMLRead.WildMonsterReadXML();
+        System.out.println(list);
         Region headerLeftSpring = new Region();
         Scene scene = SceneBuilder.create()
                 .width(1050)
@@ -57,11 +63,54 @@ public class Main extends Application {
                                                         TabBuilder.create()
                                                                 .text("宠物列表")
                                                                 .content(
-                                                                        HBoxBuilder.create()
-                                                                                .children(
-                                                                                        ButtonBuilder.create().text("button2").build()
-                                                                                )
-                                                                                .build()
+                                                                        TabPaneBuilder.create()
+                                                                                .tabs(
+                                                                                        TabBuilder.create()
+                                                                                                .text("野怪刷级")
+                                                                                                .closable(false)
+                                                                                                .content(
+                                                                                                        HBoxBuilder.create()
+                                                                                                                .children(
+                                                                                                                        ButtonBuilder.create().text("button2")
+                                                                                                                                .onAction(event -> System.out.println("Button点击一下"))
+                                                                                                                                .build()
+                                                                                                                ).build()
+                                                                                                ).build(),
+                                                                                        TabBuilder.create()
+                                                                                                .text("野怪刷级2")
+                                                                                                .closable(false)
+                                                                                                .content(
+                                                                                                        HBoxBuilder.create()
+                                                                                                                .children(
+                                                                                                                        ButtonBuilder.create().text("button2")
+                                                                                                                                .onAction(event -> System.out.println("Button点击一下"))
+                                                                                                                                .build()
+                                                                                                                ).build()
+                                                                                                ).build(),
+                                                                                        TabBuilder.create()
+                                                                                                .text("野怪刷级3")
+                                                                                                .closable(false)
+                                                                                                .content(
+                                                                                                        HBoxBuilder.create()
+                                                                                                                .children(
+                                                                                                                        ButtonBuilder.create().text("button2")
+                                                                                                                                .onAction(event -> System.out.println("Button点击一下"))
+                                                                                                                                .build()
+                                                                                                                ).build()
+                                                                                                ).build(),
+                                                                                        TabBuilder.create()
+                                                                                                .text("野怪刷级4")
+                                                                                                .closable(false)
+                                                                                                .content(
+                                                                                                        HBoxBuilder.create()
+                                                                                                                .children(
+                                                                                                                        ButtonBuilder.create().text("button2")
+                                                                                                                                .onAction(event -> System.out.println("Button点击一下"))
+                                                                                                                                .build()
+                                                                                                                ).build()
+                                                                                                ).build()
+                                                                                ).build()
+
                                                                 )
                                                                 .closable(false)
                                                                 .build(),
@@ -70,14 +119,14 @@ public class Main extends Application {
                                                                 .content(
                                                                         HBoxBuilder.create()
                                                                                 .children(
-                                                                                        ButtonBuilder.create().text("button2").build()
+                                                                                        ButtonBuilder.create().text("button3").build()
                                                                                 )
                                                                                 .build()
                                                                 )
                                                                 .closable(false)
                                                                 .build(),
                                                         TabBuilder.create()
-                                                                .text("活动列表")
+                                                                .text("每日任务")
                                                                 .content(
                                                                         HBoxBuilder.create()
                                                                                 .children(
@@ -88,7 +137,6 @@ public class Main extends Application {
                                                                 .closable(false)
                                                                 .build()
                                                 )
-
                                                 .build()
 
                                 )
@@ -96,7 +144,7 @@ public class Main extends Application {
                                         HBoxBuilder.create()
                                                 .id("footer")
                                                 .children(
-                                                        new Label("Footer Left")
+                                                        new Label("梦灵辅助,开发者:绿辉zzZ,开发状态,版本V1.0.0")
                                                 )
                                                 .build()
                                 )
