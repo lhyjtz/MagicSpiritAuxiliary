@@ -14,7 +14,7 @@ import java.util.List;
 
 
 public class Main extends Application {
-    private String mInitUrl = "https://17roco.qq.com/default.html";
+    private static String mInitUrl = "https://17roco.qq.com/default.html";
 
     public static void main(String[] args) {
         launch(args);
