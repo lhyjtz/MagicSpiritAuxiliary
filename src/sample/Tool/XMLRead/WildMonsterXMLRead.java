@@ -7,7 +7,6 @@ import org.dom4j.io.SAXReader;
 import sample.Tool.Eneity.WildMonsterXMLReadEntity;
 
 import java.io.FileInputStream;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -15,14 +14,16 @@ import java.util.List;
 /**
  * @autHor LHYJTZ
  * @data 2021年04月21日 13:37
+ * 用于读取XML数据
  */
 public class WildMonsterXMLRead {
     private int i = 1;
 
 
-    public void WildMonsterReadXML() throws Exception {
+    public List<WildMonsterXMLReadEntity> WildMonsterReadXML() throws Exception {
         SAXReader saxReader = new SAXReader();
         Document document = saxReader.read(new FileInputStream("src/sample/XML/WildMonster.xml"));
+        System.out.println(document.toString());
         List<WildMonsterXMLReadEntity> list = new ArrayList<>();
         Element root = document.getRootElement();
         for (Iterator<Element> subroot = root.elementIterator(); subroot.hasNext(); ) {
@@ -68,5 +69,7 @@ public class WildMonsterXMLRead {
         for (WildMonsterXMLReadEntity employee : list) {
             System.out.println("信息为：" + employee.toString());
         }
+        return list;
     }
+
 }
