@@ -1,6 +1,6 @@
 package sample;
 
-import javafx.application.Application;
+import javafx.application.Application;;
 import javafx.scene.Scene;
 import javafx.scene.SceneBuilder;
 import javafx.scene.control.*;
@@ -58,7 +58,7 @@ public class Main extends Application {
                                                                                 )
                                                                                 .build()
                                                                 )
-                                                                .closable(false)//选项卡不可关闭
+                                                                .closable(false)//控制选项卡不可关闭
                                                                 .build(),
                                                         TabBuilder.create()
                                                                 .text("宠物列表")
@@ -138,7 +138,6 @@ public class Main extends Application {
                                                                 .build()
                                                 )
                                                 .build()
-
                                 )
                                 .bottom(
                                         HBoxBuilder.create()
