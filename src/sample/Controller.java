@@ -6,12 +6,16 @@ package sample;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import org.apache.commons.httpclient.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import org.apache.commons.httpclient.methods.GetMethod;
+import org.apache.commons.httpclient.util.URIUtil;
+import org.apache.commons.lang3.StringUtils;
 
 public class Controller {
 
@@ -42,6 +46,9 @@ public class Controller {
 
     public void printHelloWorld(ActionEvent actionEvent) {
         System.out.println("Cd");
+        Thread thread = new Thread() {
+        };
+        thread.start();
     }
 
 }
