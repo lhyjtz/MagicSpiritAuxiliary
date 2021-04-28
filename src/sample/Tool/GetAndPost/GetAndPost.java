@@ -1,14 +1,17 @@
 package sample.Tool.GetAndPost;
 
 import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.HttpMethod;
 import org.apache.commons.httpclient.HttpStatus;
+import org.apache.commons.httpclient.URIException;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.params.HttpMethodParams;
 import org.apache.commons.httpclient.util.URIUtil;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,56 +19,74 @@ import java.io.InputStreamReader;
 import java.util.Map;
 
 /**
- * @autHor LHYJTZ
- * @data 2021年04月23日 13:51
+ * HTTP工具箱
+ *
+ * @author leizhimin 2009-6-19 16:36:18
  */
-public class GetAndPost {
-    public String cs(String name) {
-        if (name != null) {
-            System.out.println(name);
-            return name;
-        } else {
-            System.out.println("null");
-            return "null";
-        }
-    }
+public final class GetAndPost {
+    private static Log log = LogFactory.getLog(GetAndPost.class);
 
-    public String doGet(String url, String queryString, String charset, boolean pretty) {
+    /**
+     * 执行一个HTTP GET请求，返回请求响应的HTML
+     *
+     * @param url         请求的URL地址
+     * @param queryString 请求的查询参数,可以为null
+     * @param charset     字符集
+     * @param pretty      是否美化
+     * @return 返回请求响应的HTML
+     */
+    public static String doGet(String url, String queryString, String charset, boolean pretty) {
         StringBuffer response = new StringBuffer();
         HttpClient client = new HttpClient();
         HttpMethod method = new GetMethod(url);
         try {
             if (StringUtils.isNotBlank(queryString))
+                //对get请求参数做了http请求默认编码，好像没有任何问题，汉字编码后，就成为%式样的字符串
                 method.setQueryString(URIUtil.encodeQuery(queryString));
-            client.executeMethod(method);
-            getPostAll(charset, pretty, response, method);
-        } catch (Exception e) {
-            e.printStackTrace();
+            GetPostAll(charset, pretty, response, client, method);
+        } catch (URIException e) {
+            log.error("执行HTTP Get请求时，编码查询字符串“" + queryString + "”发生异常！", e);
+        } catch (IOException e) {
+            log.error("执行HTTP Get请求" + url + "时，发生异常！", e);
+        } finally {
+            method.releaseConnection();
         }
         return response.toString();
     }
 
-    public String doPost(String url, Map<String, String> params, String charset, boolean pretty) {
+    /**
+     * 执行一个HTTP POST请求，返回请求响应的HTML
+     *
+     * @param url     请求的URL地址
+     * @param params  请求的查询参数,可以为null
+     * @param charset 字符集
+     * @param pretty  是否美化
+     * @return 返回请求响应的HTML
+     */
+    public static String doPost(String url, Map<String, String> params, String charset, boolean pretty) {
         StringBuffer response = new StringBuffer();
-        HttpClient httpClient = new HttpClient();
+        HttpClient client = new HttpClient();
         HttpMethod method = new PostMethod(url);
+        //设置Http Post数据
         if (params != null) {
-            HttpMethodParams httpMethodParams = new HttpMethodParams();
+            HttpMethodParams p = new HttpMethodParams();
             for (Map.Entry<String, String> entry : params.entrySet()) {
-                httpMethodParams.setParameter(entry.getKey(), entry.getValue());
+                p.setParameter(entry.getKey(), entry.getValue());
             }
-            method.setParams(httpMethodParams);
+            method.setParams(p);
         }
         try {
-            httpClient.executeMethod(method);
-            getPostAll(charset, pretty, response, method);
-        } catch (Exception e) {
-            e.printStackTrace();
+            GetPostAll(charset, pretty, response, client, method);
+        } catch (IOException e) {
+            log.error("执行HTTP Post请求" + url + "时，发生异常！", e);
+        } finally {
+            method.releaseConnection();
         }
         return response.toString();
     }
 
-    private void getPostAll(String charset, boolean pretty, StringBuffer response, HttpMethod method) throws IOException {
+    private static void GetPostAll(String charset, boolean pretty, StringBuffer response, HttpClient client, HttpMethod method) throws IOException {
+        client.executeMethod(method);
         if (method.getStatusCode() == HttpStatus.SC_OK) {
             BufferedReader reader = new BufferedReader(new InputStreamReader(method.getResponseBodyAsStream(), charset));
             String line;
@@ -77,5 +98,10 @@ public class GetAndPost {
             }
             reader.close();
         }
+    }
+
+    public static void main(String[] args) {
+        String y = doGet("http://121.5.161.175:8081/userList", null, "GBK", true);
+        System.out.println(y);
     }
 }

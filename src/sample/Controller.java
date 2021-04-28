@@ -6,16 +6,14 @@ package sample;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import org.apache.commons.httpclient.*;
+import com.sun.deploy.net.HttpUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
-import org.apache.commons.httpclient.methods.GetMethod;
-import org.apache.commons.httpclient.util.URIUtil;
-import org.apache.commons.lang3.StringUtils;
+import sample.Tool.Untils.HTTPUtils;
 
 public class Controller {
 
@@ -34,6 +32,7 @@ public class Controller {
     @FXML // fx:id="Tab1"
     private Tab Tab1; // Value injected by FXMLLoader
 
+
     @FXML
     // This method is called by the FXMLLoader when initialization is complete
     public void initialize() {
@@ -46,9 +45,13 @@ public class Controller {
 
     public void printHelloWorld(ActionEvent actionEvent) {
         System.out.println("Cd");
-        Thread thread = new Thread() {
-        };
-        thread.start();
+        for (int i = 0; i < 100; i++) {
+            new Thread() {
+                String cs = HTTPUtils.WildMonsterXMLRead();
+            }.start();
+
+            bottom.setText("第" + cs + "循环");
+        }
     }
 
 }

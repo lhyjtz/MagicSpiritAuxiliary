@@ -36,7 +36,7 @@ public class cs extends Application {
         System.out.println(list);
         Region headerLeftSpring = new Region();
         ToggleGroup group = new ToggleGroup();
-        GetAndPost getAndPost = new GetAndPost();
+
         group.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
             if (group.getSelectedToggle() != null) {
                 name[0] = ((RadioButton) newValue).getText();
@@ -180,12 +180,12 @@ public class cs extends Application {
         primaryStage.show();
     }
 
-    GetAndPost getAndPost = new GetAndPost();
+
 
     public void cs54() {
 
         if (name[0] != null) {
-            cs123 = getAndPost.cs(name[0]);
+
         } else {
             System.out.println("无");
         }
