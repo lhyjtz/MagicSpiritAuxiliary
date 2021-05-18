@@ -34,7 +34,7 @@
                                                     <content>
                                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                             <children>
-                                                                <Button id="WildMonsterXMLStartSkill" layoutX="277.0" layoutY="44.0" mnemonicParsing="false" onAction="#printHelloWorld" text="开始刷级" />
+                                                                <Button fx:id="WildMonsterXMLStartSkill" layoutX="266.0" layoutY="25.0" mnemonicParsing="false" onAction="#printHelloWorld1" text="开始刷级" />
                                                                 <RadioButton layoutX="39.0" layoutY="28.0" mnemonicParsing="false" text="RadioButton">
                                                                     <toggleGroup>
                                                                         <ToggleGroup fx:id="ToggleGroupSkill" />
@@ -43,6 +43,7 @@
                                                                 <RadioButton layoutX="158.0" layoutY="28.0" mnemonicParsing="false" text="RadioButton" toggleGroup="$ToggleGroupSkill" />
                                                                 <RadioButton layoutX="39.0" layoutY="75.0" mnemonicParsing="false" text="RadioButton" toggleGroup="$ToggleGroupSkill" />
                                                                 <RadioButton layoutX="158.0" layoutY="75.0" mnemonicParsing="false" text="RadioButton" toggleGroup="$ToggleGroupSkill" />
+                                                                <Button fx:id="WildMonsterXMLStartSkill1" layoutX="266.0" layoutY="72.0" mnemonicParsing="false" onAction="#printHelloWorld2" text="停止刷级" />
                                                             </children>
                                                         </AnchorPane>
                                                     </content>
